@@ -4,6 +4,7 @@ project(CppPythonIntegrationDemo)
 # Set C++ standard
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
+set(CMAKE_BUILD_TYPE Debug)
 
 add_definitions(-O0 -g)
 

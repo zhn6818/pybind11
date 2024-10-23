@@ -33,11 +33,13 @@ int main()
         std::string model_path = "/data1/zhn/macdata/code/github/python/TextRecognitionDataGenerator/FontClassify/weights/best_model_acc0.9927_20240930-095649.pth";
         std::string image_path = "/data1/zhn/macdata/code/github/python/TextRecognitionDataGenerator/outEval/FangSong/ 货 服 蓉 尚 嚣 龄 野 抹_1758.jpg";
 
-        // Assuming the function in predictsingle.py is called "predict" and takes model_path and image_path as arguments
+        // Assuming the function in predictsingle.py is called "main_predict" and takes model_path and image_path as arguments
         py::object result = predict.attr("main_predict")(model_path, image_path);
+        // Wrap the result in a shared_ptr to manage the object's lifetime
+        std::shared_ptr<py::object> result_ptr = std::make_shared<py::object>(result);
 
         // Print the result (assuming it's a string or can be cast to one)
-        std::cout << "Prediction result: " << result.cast<std::string>() << std::endl;
+        std::cout << "Prediction result: " << result_ptr->cast<std::string>() << std::endl;
     } catch (const py::error_already_set& e) {
         // Handle Python errors
         std::cerr << "Python error: " << e.what() << std::endl;
